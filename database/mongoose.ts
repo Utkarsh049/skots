@@ -4,8 +4,8 @@ const MONGODB_URI = process.env.MONGODB_URI;
 
 declare global {
     var mongooseCache:{
-        conn:typeof mongoose|null;
-        promise:Promise<typeof mongoose>|null;
+        conn:typeof mongoose | null;
+        promise:Promise<typeof mongoose> | null;
     }
 }
 
@@ -15,7 +15,7 @@ if(!cached){
     cached=global.mongooseCache={conn:null,promise:null};
 }
 
-export const connectToDatabase=async()=>{
+export const connectToDatabase = async (): Promise<typeof mongoose> => {
     if(!MONGODB_URI){
         throw new Error('Please define the MONGODB_URI environment variable inside .env.local');
     }
@@ -37,4 +37,5 @@ export const connectToDatabase=async()=>{
     }
 
     console.log(`Connected to database ${process.env.NODE_ENV} - ${MONGODB_URI}`);
+    return cached.conn;
 };
