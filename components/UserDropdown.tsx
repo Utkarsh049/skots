@@ -15,7 +15,7 @@ import Navitems from "./Navitems";
 const UserDropdown = () => {
   const router = useRouter();
   const handleSignout = () => {
-    router.push("/signin");
+    router.push("/sign-in");
   };
 
   const user = { name: "Utkarsh", email: "hola@gmail.com" };
